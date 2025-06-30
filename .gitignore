@@ -1,2 +1,12 @@
 *.agdai
+*~
 MAlonzo/**
+src/latex/PolyP30.aux
+src/latex/PolyP30.bbl
+src/latex/PolyP30.blg
+src/latex/PolyP30.fdb_latexmk
+src/latex/PolyP30.fls
+src/latex/PolyP30.log
+src/latex/PolyP30.out
+src/latex/PolyP30.ptb
+src/latex/PolyP30.tex

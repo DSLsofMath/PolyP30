@@ -1,0 +1,75 @@
+\begin{thebibliography}{10}
+
+\bibitem{Garcia*2007:Extended}
+Garcia, R., J{\"{a}}rvi, J., Lumsdaine, A., Siek, J.G., Willcock, J.: An
+  extended comparative study of language support for generic programming.
+  Journal of Functional Programming  \textbf{17}(2),  145--205 (2007).
+  \doi{10.1017/S0956796806006198}
+
+\bibitem{Gibbons&Wu2014:Folding}
+Gibbons, J., Wu, N.: Folding domain-specific languages: Deep and shallow
+  embeddings. In: International Conference on Functional Programming (Sep
+  2014). \doi{10.1145/2628136.2628138}
+
+\bibitem{PolyP-github}
+Jansson, P.: {PolyP} source code. \url{https://github.com/patrikja/PolyP}
+
+\bibitem{PolyP30-github}
+Jansson, P., Gibbons, J.: Source code for the ``{PolyP} 30'' paper.
+  \url{https://github.com/DSLsofMath/PolyP30}
+
+\bibitem{Jansson&Jeuring97:Polytypic}
+Jansson, P., Jeuring, J.: Poly{P} -- {A} polytypic programming language
+  extension. In: Principles of Programming Languages (POPL). pp. 470--482. ACM
+  Press (1997). \doi{10.1145/263699.263763}
+
+\bibitem{janssonjeuring2002a}
+Jansson, P., Jeuring, J.: Polytypic data conversion programs. Science of
+  Computer Programming  \textbf{43},  35--75 (2002).
+  \doi{10.1016/S0167-6423(01)00020-X}
+
+\bibitem{Jeuring95:Polytypic}
+Jeuring, J.: Polytypic pattern matching. In: Functional Programming Languages
+  and Computer Architecture. pp. 238--248. ACM (1995).
+  \doi{10.1145/224164.224212}
+
+\bibitem{GH-project}
+Jeuring, J.: Generic {H}askell: A language for generic programming. NWO grant
+  612.069.000 (2000), \url{https://www.nwo.nl/en/projects/612069000}
+
+\bibitem{Jeuring&Jansson96:Polytypic}
+Jeuring, J., Jansson, P.: Polytypic programming. In: Launchbury, J., Meijer,
+  E., Sheard, T. (eds.) Advanced Functional Programming. Lecture Notes in
+  Computer Science, vol.~1129, pp. 68--114. Springer-Verlag (1996).
+  \doi{10.1007/3-540-61628-4_3}
+
+\bibitem{Martin-Lof84:Intuitionistic}
+Martin-L{\"o}f, P.: Intuitionistic Type Theory. Studies in Proof Theory,
+  Bibliopolis (1984), notes by {G}iovanni Sambin of a series of lectures given
+  in Padua, June 1980. {ISBN} 88-7088-105-9.
+
+\bibitem{Meertens96:Calculate}
+Meertens, L.: Calculate polytypically! In: Kuchen, H., Swierstra, S.D. (eds.)
+  Programming Languages: Implementations, Logics, and Programs. Lecture Notes
+  in Computer Science, vol.~1140, pp. 1--16. Springer-Verlag (1996).
+  \doi{10.1007/3-540-61756-6_73}
+
+\bibitem{Meijer&Jeuring95:Merging}
+Meijer, E., Jeuring, J.: Merging monads and folds for functional programming.
+  In: Jeuring, J., Meijer, E. (eds.) Advanced Functional Programming. Lecture
+  Notes in Computer Science, vol.~925, pp. 228--266. Springer (1995).
+  \doi{10.1007/3-540-59451-5\_7}
+
+\bibitem{norell2007towards}
+Norell, U.: Towards a Practical Programming Language Based on Dependent Type
+  Theory, vol.~32. Chalmers University of Technology (2007),
+  \url{https://www.cse.chalmers.se/~ulfn/papers/thesis.pdf}, {ISBN}
+  978-91-7291-996-9.
+
+\bibitem{DBLP:conf/ifl/NorellJ03}
+Norell, U., Jansson, P.: Polytypic programming in {H}askell. In: Trinder, P.,
+  Michaelson, G.J., Pe{\~{n}}a, R. (eds.) Implementation of Functional
+  Languages. Lecture Notes in Computer Science, vol.~3145, pp. 168--184.
+  Springer, Berlin, Heidelberg (2005). \doi{10.1007/978-3-540-27861-0\_11}
+
+\end{thebibliography}

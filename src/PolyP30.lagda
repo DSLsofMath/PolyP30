@@ -8,26 +8,6 @@
 
 \documentclass[fleqn,runningheads]{llncs}
 
-% I'm in two minds whether to use agda --latex or lhs2tex --agda
-% The former seems the more common in Agda world, and is prettier;
-% but the latter is more powerful: is there no %format, no spec environment?
-% Patrik: I agree that this is very annoying, but sometimes hidden code blocks with clever macros around will do the trick.
-\newif\iflhstotex
-% TODO dispense with lhs2tex version
-
-%if True
-% we're using lhs2tex --agda
-% but remember: this branch gets executed anyway with agda --latex!
-% so any settings here must be overridden in the other branch
-\lhstotextrue
-%include lhs2TeX.fmt
-%include lhs2TeX.sty
-%include polycode.fmt
-%format polytypic = "\mathbf{polytypic}"
-%else
-% we're using agda --latex
-% this branch skipped by lhs2tex --agda
-\lhstotexfalse
 \usepackage{agda}
 \setlength{\AgdaEmptySkip}{1ex} % smaller gap for blank lines
 \mathindent=\parindent % smaller indentation of code (and displayed maths) blocks
@@ -60,10 +40,7 @@
   \ifthenelse{\equal{#1}{x'}}{$\AgdaBound{x}^\prime$}{%
   \ifthenelse{\equal{#1}{y'}}{$\AgdaBound{y}^\prime$}{%
   #2}}}}}}}}}}}}}}}}}}}}}}}}}
-%\usepackage{agdadimmed} % alternative colour scheme
-%\usepackage{agdatheme} % alternative colour scheme
 \paperwidth=210mm \paperheight=297mm
-%endif
 \leftmargini = \parindent
 
 \usepackage[T1]{fontenc}
@@ -146,13 +123,7 @@ and so on.
 A crucial criterion is the maintenance of strong static type safety; in contrast, approaches based on dynamic typing may be able to express the same programs, but cannot make the same static guarantees.
 
 %1998-04-13: first commit: https://github.com/patrikja/PolyP/commit/4e8fd742c3f51870b8ca5dade562b14920099907
-PolyP was implemented \cite{Jansson&Jeuring97:Polytypic} as a preprocessor for Haskell, providing an additional
-\iflhstotex
-|polytypic|
-\else
-\AgdaKeyword{polytypic}
-\fi
-construct that gets translated into ordinary Haskell.
+PolyP was implemented \cite{Jansson&Jeuring97:Polytypic} as a preprocessor for Haskell, providing an additional \AgdaKeyword{polytypic} construct that gets translated into ordinary Haskell.
 % JG: I hate footnotes!
 (The source code is available at GitHub \cite{PolyP-github}. The original revision history has been preserved, predating GitHub's birth by a decade.)
 The work on PolyP led to a grant from the Dutch research council NWO for the \textit{Generic Haskell} project, running 2000--2004 \cite{GH-project}, another preprocessor for Haskell, and then in turn to many different approaches to generic programming \cite{Garcia*2007:Extended}.
@@ -210,8 +181,6 @@ Note that there is no $\mathit{Functor}$ or $\mathit{Bifunctor}$ type class cons
 
 \section{Dependently typed programming}
 
-% whether agda --latex or lhs2tex --agda, don't include this section in the PDF
-%if style == newcode
 \begin{code}[hide]
 module PolyP30 where
 open import Data.List using (List; _∷_; []; [_]; _++_; foldr; foldl; concat; reverse; length; uncons; splitAt) public
@@ -262,8 +231,6 @@ instance  -- enable Fin literals
   numFin {n} = Data.Fin.Literals.number n
 \end{code}
 
-%endif
-
 In PolyP, a polytypic definition like that of $\mathit{fmap}$ specifies what code should be generated for a specific type: ``the compiler generates instances from the definition of the polytypic function and the type in the context where it is used''~\cite{Jansson&Jeuring97:Polytypic}. This is more than mere text processing, because PolyP does take care to type check a polytypic definition, in the sense that no generated instance will yield a Haskell type error. Still, PolyP is essentially a standalone domain-specific language for polytypic definitions, which means that the full power of the target language Haskell is not available in polytypic code.
 
 This is a price that need not be paid, provided one can find a single language expressive enough to encompass both the polytypic templates and the actual eventual code. Then a separate code generation phase is not required: it becomes ``a small matter of programming'' in the one language.
@@ -272,7 +239,6 @@ It turns out that a dependently typed language like Agda \cite{norell2007towards
 So what would in PolyP be a polytypic function parametrized by a functor becomes in Agda just a function with an argument. However, that argument can't literally be a type, or a functor. We can't work with the types themselves, because we can't analyse them: they would be black boxes, and we need to perform case analyses on them. Instead, we make separate \emph{codes} for the types in the universe, and define the interpretation mapping codes to types. Codes \emph{can} be analysed and manipulated, since they are just terms in an algebraic datatype.
 
 As a simple introduction, let's consider the universe of types consisting of sums and products of the unit type, naturals, and booleans. We start with an algebraic datatype of codes for the types in the universe:
-%\newpage
 \begin{code}
 data Code₀ : Set where
   NatT BoolT UnitT : Code₀
@@ -331,7 +297,7 @@ test_equal₀ :
   ≡ false
 test_equal₀ = refl
 \end{code}
-normalizes to \AgdaInductiveConstructor{false}. 
+normalizes to \AgdaInductiveConstructor{false}.
 %
 Note that the first argument to \AgdaFunction{equal₀} is written in curly braces, marking it as \emph{implicit}, since it can be inferred. In particular, it is omitted for the recursive calls, and not needed for the example either: we can write just
 \begin{code}[hide]
@@ -627,7 +593,6 @@ which is nicely dual to the packer type
 %
 (For more on this duality, see \cite{janssonjeuring2002a}.)
 
-\newpage
 The stateful interface is provided by two operations:
 \begin{code}[hide]
 open UnpackerMonad public
@@ -669,7 +634,7 @@ unpackBool = uncons
 unpackUnit : Unpacker ⊤
 unpackUnit = return tt
 \end{code}
-To unpack a natural, we read a chunk of input, then convert it to a number:
+To unpack a natural, we read a chunk of input, then convert these bits to a number:
 \begin{code}
 unpackNat : Unpacker Nat
 unpackNat = do
@@ -679,7 +644,7 @@ unpackNat = do
   return (fromBits ys)
 \end{code}
 
-\newpage
+\pagebreak[4] % \newpage
 \subsection{Packing as a monadic catamorphism}
 
 Now, to pack a structure of an inductive datatype, we will use a \emph{monadic catamorphism} \cite{Meijer&Jeuring95:Merging}, which is like the ordinary catamorphism except that the algebra argument and the catamorphism itself are \emph{Kleisli arrows}---that is, they have a monadic return type:
@@ -766,7 +731,6 @@ exampleLHS  =
   packF ListC (packT NatTy) (toMyList (1 ∷ 2 ∷ 3 ∷ [])) []
 \end{code}
 reduces to the expression in \cref{fig:packEx}.
-\newpage
 
 \begin{figure}[hbtp]
 \begin{code}[hide]
@@ -804,7 +768,7 @@ mutual
 Unpacking is again defined in terms of three mutually recursive functions, unpackers respectively for types, functors, and bifunctors, each with the corresponding number of element unpackers as arguments:
 \begin{code}
   unpackT  :  (t : Type)       →         Unpacker [[ t ]]T
-  unpackF  :  (d : Functor)    → 
+  unpackF  :  (d : Functor)    →
               Unpacker a →               Unpacker ([[ d ]]F a)
   unpackB  :  (f : Bifunctor)  →
               Unpacker a → Unpacker b →  Unpacker ([[ f ]]B a b)
@@ -822,21 +786,21 @@ For the sole functor code, we use the anamorphism:
 --  unpackF (Fix f) p  = anaM f (distr' f) (λ _ → unpackB f p (unpackT UnitTy)) _
 \end{code}
 \begin{code}
-  unpackF (Fix f) unp  = anaM f (λ _ → unpackB f unp unpackUnit) _
+  unpackF (Fix f) u  = anaM f (λ _ → unpackB f u unpackUnit) _
 \end{code}
 Note that the `seed' of the anamorphism is the unit type: all the information driving the computation comes from the list of booleans, encoded in the monad. So the bound variable of the lambda is irrelevant, and the initial seed of the anamorphism can be inferred. As with packing, the anamorphism handles the recursive calls, so at the top level we need do nothing for the recursive positions (\AgdaFunction{unpackUnit}, another no-op).
 
 And finally, there is one fairly simple case per bifunctor:
 \begin{code}
-  unpackB (f * g) p q    = liftM2 _,_ (unpackB f p q) (unpackB g p q)
-  unpackB (f + g) p q    = do  b ← unpackBool
+  unpackB (f * g) u v    = liftM2 _,_ (unpackB f u v) (unpackB g u v)
+  unpackB (f + g) u v    = do  b ← unpackBool
                                caseBit b
-                                 (inj₁ <$> unpackB f p q)
-                                 (inj₂ <$> unpackB g p q)
-  unpackB (Const x) p q  = unpackT x
-  unpackB (d ● g) p q    = unpackF d (unpackB g p q)
-  unpackB Par p q        = p
-  unpackB Rec p q        = q
+                                 (inj₁ <$> unpackB f u v)
+                                 (inj₂ <$> unpackB g u v)
+  unpackB (Const x) u v  = unpackT x
+  unpackB (d ● g) u v    = unpackF d (unpackB g u v)
+  unpackB Par u v        = u
+  unpackB Rec u v        = v
 \end{code}
 For products, we unpack the left then the right components; for sums, we consume one discriminator bit in order to decide which branch to take.
 

@@ -1,11 +1,14 @@
+AGDA = agda-2.7.0.1
+
 all: agda
 
+
 agda:
-	agda --latex --only-scope-checking PolyP30.lagda
+	${AGDA} --latex --only-scope-checking PolyP30.lagda
 	latexmk -pdf -cd latex/PolyP30
 
 quickly:
-	agda --latex --only-scope-checking PolyP30.lagda
+	${AGDA} --latex --only-scope-checking PolyP30.lagda
 	latexmk -e "\$$max_repeat=1" -pdf -cd latex/PolyP30
 
 submit1: agda

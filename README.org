@@ -1,0 +1,14 @@
+* Agda-ventures with PolyP
+(PolyP at 30)
+
+This repository contains [[file:src/PolyP30.lagda][the literate Agda file]] which doubles as the
+LaTeX source for [[file:GibbonsJansson_PolyP30.pdf][the paper]] and the Agda code in it.
+
+The Agda code typechecks at least with version 2.7.0.1 of Agda and
+version 2.2 of the Agda standard library.
+
+The paper is a chapter in a Festschrift for Johan Jeuring's 60:th
+birthday celebration: JohanFest, Utrecht, 2025-09-19.
+
+At JohanFest, Patrik Jansson presented [[file:2025-09_JohanFest_Jansson_PolyP30.pdf][some slides]] based on the paper
+and recollections from our joint work over the decades.
